@@ -13,11 +13,17 @@ import { TypeOrmConfigModule } from './config/database/typeorm-config.module';
 import { TypeOrmConfigService } from './config/database/typeorm-config.service';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { UserAuthModule } from './modules/user/users.module';
+import { EmployeeModule } from './modules/employee/employee.module';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+    }),
+    ThrottlerModule.forRoot({
+      ttl: 60, // Time to live (in seconds) of each throttling rule
+      limit: 100, // Maximum number of requests per TTL cycle
     }),
     TypeOrmModule.forRootAsync({
       imports: [TypeOrmConfigModule],
@@ -51,6 +57,7 @@ import { UserAuthModule } from './modules/user/users.module';
       },
     ]),
     UserAuthModule,
+    EmployeeModule,
     // CatModule,
     // MediaManagerModule,
   ],
