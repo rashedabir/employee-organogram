@@ -23,12 +23,12 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       password: this.configService.get('DB_PASSWORD'),
       database: this.configService.get('DB_NAME'),
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      autoLoadEntities: false,
+      autoLoadEntities: true,
       synchronize:
         this.configService.get('APP_ENV') === 'development' ? true : false,
       // Run migrations automatically,
       // you can disable this if you prefer running migration manually.
-      migrationsRun: true,
+      migrationsRun: false,
       //custom logger implementation
       logger: TypeOrmLoggerContainer.ForConnection(
         TypeOrmConfigService.connectionName,
@@ -37,7 +37,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
 
       name: TypeOrmConfigService.connectionName,
 
-      migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+      // migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
     };
   }
 }

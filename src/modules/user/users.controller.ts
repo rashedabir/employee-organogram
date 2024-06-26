@@ -1,14 +1,14 @@
 /**dependencies */
 import { Body, Controller, Get, Patch, Post, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
-import { UserPayload } from 'src/common/decorators/user.payload.decorator';
-import { UserPayloadInterface } from 'src/common/interfaces/user-payload.interface';
+import { UserPayloadInterface } from '../../common/interfaces/user-payload.interface';
 import { UserChangePasswordDto } from './dto/change-password.dto';
 import { UserLoginDto } from './dto/user-login.dto';
 import { UserProfileDto } from './dto/user-profile-update.dto';
 import { UserRegistrationDto } from './dto/user-registration.dto';
 import { JwtAuthGuard } from './guards/jwt.guard';
 import { UserAuthService } from './users.service';
+import { UserPayload } from '../../common/decorators/user.payload.decorator';
 /**services */
 //swagger doc
 
